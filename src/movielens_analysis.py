@@ -2,15 +2,12 @@ import sys
 from collections import Counter, namedtuple
 import re
 import os
-from traceback import print_tb
 
 import pytest
 import requests
 import json
 from bs4 import BeautifulSoup as soup
 from datetime import datetime as dt
-
-from jupyterlab.tests.echo_kernel import EchoKernel
 
 
 class Movies:
