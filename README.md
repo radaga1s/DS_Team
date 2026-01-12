@@ -2,14 +2,8 @@
 
 Summary: This rush will help you to strengthen the skills acquired in the previous days
 
-💡 [Tap here](https://new.oprosso.net/p/4cb31ec3f47a4596bc758ea1861fb624) **to leave your feedback on the project**. It's anonymous and will help our team make your educational experience better. We recommend completing the survey immediately after the project.
-
 ## Contents
 
-1. [Chapter I](#chapter-i) \
-    1.1. [Foreword](#foreword)
-2. [Chapter II](#chapter-ii) \
-    2.1. [Instructions](#instructions)
 3. [Chapter III](#chapter-iii) \
     3.1. [Specific instructions for the day](#specific-instructions-for-the-day)
 4. [Chapter IV](#chapter-iv) \
@@ -18,55 +12,6 @@ Summary: This rush will help you to strengthen the skills acquired in the previo
     5.1. [Bonus part](#bonus part)
 6. [Chapter VI](#chapter-vi) \
     6.1. [Turn-in and peer-evaluation](#turn-in-and-peer-evaluation)
-
-## Chapter I
-
-### Foreword
-
-Why do we like movies? What makes them so attractive to us?
-Even though the movie is a relatively modern thing for humanity, it has a pretty
-old mechanism inside – it is the story.
-
-People have loved stories since ancient times. Think about them as a universal
-container that effectively transfers some useful information from a source
-to a person. By sparkling emotions and imagination in us, it establishes a
-good connection and packages information in a way that can be easily consumed
-by a human being. Stories were crucial for surviving to our ancestors. Stories
-contain the personal experience that can be applied to your life. For example,
-you may discover that some areas around your village are pretty dangerous.
-Or there are some really good places to gather mushrooms.
-
-Our attention to stories has survived through the centuries. If a speaker starts
-their presentation by telling a story, they catch our attention. We love books.
-We love music and songs. We love movies.
-
-How can you use stories in data science? Good reports have elements of storytelling.
-Try to tell a story by your analysis.
-
-## Chapter II
-
-### Instructions
-
-* Use this page as the only reference. Do not listen to any rumors and speculations
-about how to prepare your solution.
-* Here and further we use Python 3 as the only correct version of Python.
-* The python files for python exercises (module01, module02, module03) must have
-a block in the end: ```if __name__ == ‘__main__’```.
-* Pay attention to the permissions of your files and directories.
-* To be assessed your solution must be in your GIT repository.
-* Your solutions will be evaluated by your piscine mates.
-* You should not leave in your directory any other file than those explicitly specified
-by the exercise instructions. It is recommended that you modify your .gitignore to
-avoid accidents.
-* When you need to get precise output in your programs, it is forbidden to display a
-precalculated output instead of performing the exercise correctly.
-* Have a question? Ask your neighbor on the right. Otherwise, try with your neighbor
-on the left.
-* Your reference manual: mates / Internet / Google.
-* ou can ask questions in Slack.
-* Read the examples carefully. They may require things that are not otherwise spec-
-ified in the subject.
-* And may the Force be with you!
 
 ## Chapter III
 
