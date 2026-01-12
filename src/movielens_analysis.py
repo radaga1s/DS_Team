@@ -2,7 +2,6 @@ import sys
 from collections import Counter, namedtuple
 import re
 import os
-
 import pytest
 import requests
 import json
@@ -14,7 +13,6 @@ class Movies:
     """
     Analyzing data from movies.csv
     """
-
     def __init__(self, path_to_the_file):
         self.filepath = path_to_the_file
         self.data = self.__read_file(path_to_the_file)
@@ -32,7 +30,7 @@ class Movies:
     def dist_by_genres(self):
         """
         The method returns a dict where the keys are genres and the values are counts.
-     Sort it by counts descendingly.
+        Sort it by counts descendingly.
         """
         lst_genres = [genre for sublist in self.data for genre in sublist[2]]
         genres = dict(sorted(Counter(lst_genres).items(), key=lambda x: x[1], reverse=True))
@@ -47,16 +45,18 @@ class Movies:
         movies = dict(Counter(genres_count_dict).most_common(n))
         return movies
 
-    ''' Вспомогательные функции '''
 
     def __read_file(self, filepath):
+        """
+        Auxiliary function
+        """
         try:
             if not os.path.isfile(filepath):
                 raise Exception(f"File '{filepath}' does not exist")
             if 'movies.csv' in filepath:
                 with open(filepath, mode='r', encoding='utf-8') as f:
-                    pattern = r',(?=(?:[^"]*"[^"]*")*[^"]*$)'  # чтобы не split не разделял title, если внутри названия есть кавычки
-                    pattern_film = r'"?(.*?)"?\s*\((\d{4})\)'  # разделение в отдельные группы названия фильма и год
+                    pattern = r',(?=(?:[^"]*"[^"]*")*[^"]*$)'
+                    pattern_film = r'"?(.*?)"?\s*\((\d{4})\)'
                     next(f)
                     lst = list()
                     for line in f:
@@ -80,7 +80,6 @@ class Tags:
     """
     Analyzing data from tags.csv
     """
-
     def __init__(self, path_to_the_file):
         self.filepath = path_to_the_file
         self.data = self.__read_file(path_to_the_file)
@@ -88,8 +87,8 @@ class Tags:
     def most_words(self, n):
         """
         The method returns top-n tags with most words inside. It is a dict
- where the keys are tags and the values are the number of words inside the tag.
- Drop the duplicates. Sort it by numbers descendingly.
+        where the keys are tags and the values are the number of words inside the tag.
+        Drop the duplicates. Sort it by numbers descendingly.
         """
         all_tags = {row[2]: len(row[2].split()) for row in self.data}
         big_tags = sorted(all_tags.items(), key=lambda x: (-x[1], x[0]))[:n]
@@ -139,7 +138,9 @@ class Tags:
             return None
 
     def __read_file(self, filepath):
-        ''' Данная функция считывает csv файл и приводит тэги к единому формату больших букв '''
+        """
+        This function reads a csv file and converts tags to a single capital letter format.
+        """
         try:
 
             if not os.path.isfile(filepath):
@@ -215,7 +216,7 @@ class Ratings:
         def dist_by_rating(self):
             """
             The method returns a dict where the keys are ratings and the values are counts.
-         Sort it by ratings ascendingly.
+            Sort it by ratings ascendingly.
             """
             ratings_distribution = {}
             for line in self.ratings_data.values():
@@ -228,7 +229,7 @@ class Ratings:
             """
             The method returns top-n movies by the number of ratings.
             It is a dict where the keys are movie titles and the values are numbers.
-     Sort it by numbers descendingly.
+            Sort it by numbers descendingly.
             """
             top_movies = {}
             for line in self.ratings_data.values():
@@ -267,7 +268,7 @@ class Ratings:
             """"
             The method returns top-n movies by the variance of the ratings.
             It is a dict where the keys are movie titles and the values are the variances.
-          Sort it by variance descendingly.
+            Sort it by variance descendingly.
             The values should be rounded to 2 decimals.
             """
             top_movies, d = {}, {}
@@ -285,7 +286,7 @@ class Ratings:
     class Users(Movies):
         def user_activity(self):
             """
-                This method returns the distribution of users by the number of ratings made by them.
+            This method returns the distribution of users by the number of ratings made by them.
             """
             d, result = Counter(line.user_id for line in self.ratings_data.values()), {}
             for marks_amount in d.values():
@@ -409,7 +410,6 @@ class Links:
         HEADERS = {
             "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36"}
         url = f'{URL_SAMPLE}{imdb_id}/'
-        # print(f'{url} parsing...')
         responce = requests.get(url, headers=HEADERS)
         content = soup(responce.text, 'html.parser')
         json_text = content.find('script', id='__NEXT_DATA__', type='application/json').string.strip()
@@ -462,7 +462,6 @@ class Links:
                         print(f'An error occured while parsing this {imdb_id=}\n{e}')
                         continue
                 else:
-                    # print(f'{movie_id} is incorrect movieID')
                     continue
             film = self.movies_data[movie_id]
             for field in list_of_fields:
@@ -598,7 +597,9 @@ class Links:
 
 
 class Test:
-    ''' Test for Movies '''
+    """
+    Tests for Movies 
+    """
     @pytest.fixture
     def class_movies(self):
         filepath = '../datasets/movies.csv'
@@ -668,7 +669,9 @@ class Test:
         test_obj = dict(list(obj.items())[:5])
         assert test_obj == {'Who Framed Roger Rabbit?': 7, 'Lion King, The': 6, 'Beauty and the Beast': 6, 'Space Jam': 6, 'Shrek': 6}
 
-    ''' Tests for Tags'''
+    """
+    Tests for Tags
+    """
     @pytest.fixture
     def class_tags(self):
         filepath = '../datasets/tags.csv'
@@ -789,9 +792,9 @@ class Test:
         assert test_obj == ['ANTI-WAR', 'CIVIL WAR', 'COLD WAR', 'GULF WAR', 'NUCLEAR WAR', 'WAR', 'WORLD WAR I', 'WORLD WAR II']
 
 
-
-    ''' Tests for Links'''
-
+    """
+    Tests for Links
+    """
     @pytest.fixture
     def class_links(self):
         filepath = '../datasets/links.csv'
@@ -933,8 +936,9 @@ class Test:
         assert test_obj == {'The Name of the Rose': 3846153.85, 'La vita è bella': 2155172.41, 'Mononoke-hime': 300751.88, 'Akira': 147849.46, 'Le peuple migrateur': 27210.88}
 
 
-    """Tests for bonus methods"""
-
+    """
+    Tests for bonus methods
+    """
     def test_most_common_words_type_of_return(self, class_links):
         obj = class_links.most_common_words(1000)
         assert isinstance(obj, dict)
@@ -1001,8 +1005,9 @@ class Test:
         test_obj = dict(list(obj.items())[:5])
         assert test_obj =={'Tom Hanks': 13, 'Robert De Niro': 10, 'Tom Cruise': 10, 'Harrison Ford': 9, 'Al Pacino': 9}
 
-    ''' Tests for Ratings'''
-
+    """
+    Tests for Ratings
+    """
     @pytest.fixture
     def class_ratings_movies(self):
         filepath = '../datasets/ratings.csv'
