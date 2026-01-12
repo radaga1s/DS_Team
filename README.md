@@ -1,6 +1,6 @@
 # MovieLens Analytics
 
-Summary: This rush will help you to strengthen the skills acquired in the previous days
+Summary: This rush will help you to strengthen the skills acquired in the previous days.
 
 ## Contents
 
